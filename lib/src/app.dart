@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shelf_journey_mobile/src/core/routing/routes.dart';
 
 class MyShelfJourney extends StatelessWidget {
   const MyShelfJourney({super.key});
@@ -9,11 +10,7 @@ class MyShelfJourney extends StatelessWidget {
       restorationScopeId: 'app',
       theme: ThemeData(),
       themeMode: ThemeMode.light,
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      onGenerateRoute: Routes.generate,
     );
   }
 }
