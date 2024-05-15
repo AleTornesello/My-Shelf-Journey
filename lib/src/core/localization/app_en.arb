@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+  "appTitle": "My Shelf Journey",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "booksListViewTitle": "Library"
+}
