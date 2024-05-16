@@ -8,6 +8,7 @@ class MsjThemeDataGenerator {
       appBarTheme: Theme.of(context).appBarTheme.copyWith(
             foregroundColor: ColorConstants.primary,
           ),
+          
     );
   }
 }

@@ -4,8 +4,10 @@ class MsjAppBarState extends State<MsjAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(widget.title),
-      // foregroundColor: Theme.of(context).primaryColor,
+      title: Text(
+        widget.title,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

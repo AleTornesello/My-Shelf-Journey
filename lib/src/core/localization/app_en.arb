@@ -4,5 +4,6 @@
   "@appTitle": {
     "description": "The title of the application"
   },
-  "booksListViewTitle": "Library"
+  "booksListViewTitle": "Library",
+  "categoryDropdownLabel": "Categories"
 }
