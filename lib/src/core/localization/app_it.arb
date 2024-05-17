@@ -5,5 +5,6 @@
     "description": "The title of the application"
   },
   "booksListViewTitle": "Libreria",
-  "categoryDropdownLabel": "Categorie"
+  "categoryDropdownLabel": "Categorie",
+  "defaultCategoryLabel": "Predefinita"
 }

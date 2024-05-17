@@ -7,11 +7,20 @@ environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
+  bloc: ^8.1.4
+  dartz: ^0.10.1
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.5
   flutter_localizations:
     sdk: flutter
+  freezed: ^2.5.2
+  get_it: ^7.7.0
+  injectable: ^2.4.0
   intl: any
+  path: ^1.9.0
+  sqflite: ^2.3.3+1
 
 dev_dependencies:
   flutter_test:
