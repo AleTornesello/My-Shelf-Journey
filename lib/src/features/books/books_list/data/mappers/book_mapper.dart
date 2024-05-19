@@ -3,10 +3,10 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/mod
 
 class BookMapper {
   static BookModel toModel(BookEntity entity) {
-    return BookModel(id: entity.id, title: entity.title);
+    return BookModel(id: entity.id, title: entity.title, imageUri: entity.imageUri);
   }
 
   static BookEntity toEntity(BookModel model) {
-    return BookEntity(id: model.id, title: model.title);
+    return BookEntity(id: model.id, title: model.title, imageUri: model.imageUri);
   }
 }
