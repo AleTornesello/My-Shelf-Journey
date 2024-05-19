@@ -20,3 +20,12 @@ final class SuccessGetBooksState extends BooksState {
   final List<BookModel> books;
   const SuccessGetBooksState(this.books);
 }
+
+final class CreatingBooksState extends BooksState {}
+
+final class ErrorCreateBooksState extends BooksState {
+  final String errorMsg;
+  const ErrorCreateBooksState(this.errorMsg);
+}
+
+final class SuccessCreateBooksState extends BooksState {}

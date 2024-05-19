@@ -16,3 +16,13 @@ final class OnGettingBooksEvent extends BooksEvent {
     this.categoryId,
   });
 }
+
+final class OnCreateBookFromIsbnEvent extends BooksEvent {
+  final String isbn;
+  final bool withLoading;
+
+  const OnCreateBookFromIsbnEvent(
+    this.withLoading,
+    this.isbn,
+  );
+}

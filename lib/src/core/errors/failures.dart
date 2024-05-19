@@ -12,3 +12,7 @@ abstract class Failure extends Equatable {
 class LocalDbFailure extends Failure {
   const LocalDbFailure(super.errorMessage);
 }
+
+class GoogleApiBooksFailure extends Failure {
+  const GoogleApiBooksFailure(super.errorMessage);
+}

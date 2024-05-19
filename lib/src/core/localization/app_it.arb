@@ -6,5 +6,7 @@
   },
   "booksListViewTitle": "Libreria",
   "categoryDropdownLabel": "Categorie",
-  "defaultCategoryLabel": "Predefinita"
+  "defaultCategoryLabel": "Predefinita",
+  "scanBookIsbnLabel": "Scansiona codice ISBM",
+  "insertBookManuallyLabel": "Inserisci libro manualmente"
 }

@@ -23,8 +23,8 @@ class BooksListItem extends StatelessWidget {
             ),
             child: Image(
               image: CachedNetworkImageProvider(book.imageUri!),
-              width: 100,
-              height: 150,
+              width: 60,
+              height: 60,
               fit: BoxFit.cover,
             ),
           ),
@@ -32,7 +32,7 @@ class BooksListItem extends StatelessWidget {
           Flexible(
             child: Text(
               book.title!,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
               overflow: TextOverflow.ellipsis,
             ),
           ),

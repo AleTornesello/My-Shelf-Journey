@@ -6,5 +6,7 @@
   },
   "booksListViewTitle": "Library",
   "categoryDropdownLabel": "Categories",
-  "defaultCategoryLabel": "Default"
+  "defaultCategoryLabel": "Default",
+  "scanBookIsbnLabel": "Scan ISBN code",
+  "insertBookManuallyLabel": "Insert book manually"
 }

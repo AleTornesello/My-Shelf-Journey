@@ -8,4 +8,5 @@ class StylesConstants {
 
   // Flex layout
   static const double gap = 12.0;
+  static const double gap2 = gap * 2;
 }
