@@ -17,6 +17,11 @@ class GoogleApiRepository extends AbstractGoogleApiRepository {
       String isbn) async {
     try {
       final result = await _googleApi.getBookDetailByIsbn(isbn);
+
+      if (result == null) {
+        return const Left(GoogleApiBookNotFoundFailure());
+      }
+
       final model = GoogleApiBookDetailMapper.toModel(result);
       return Right(model);
     } catch (e) {

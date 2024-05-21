@@ -32,12 +32,17 @@ class _BooksListViewState extends State<AddBookBottomSheet> {
             context,
             AppLocalizations.of(context)!.creatingBookOk,
           );
-        }
-        if (state is ErrorCreateBooksState) {
+        } else if (state is ErrorCreateBooksState) {
           Navigator.pop(context);
           ErrorSnackBar.show(
             context,
             AppLocalizations.of(context)!.creatingBookKo,
+          );
+        } else if (state is BookNotFoundState) {
+          Navigator.pop(context);
+          ErrorSnackBar.show(
+            context,
+            AppLocalizations.of(context)!.bookNotFound,
           );
         }
       },

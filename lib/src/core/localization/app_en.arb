@@ -11,5 +11,7 @@
   "insertBookManuallyLabel": "Insert book manually",
   "loadingBooksKo": "An error occurred while loading the library",
   "creatingBookOk": "Book created successfully",
-  "creatingBookKo": "An error occurred while creating the book"
+  "creatingBookKo": "An error occurred while creating the book",
+  "bookDetailViewTitle": "Details",
+  "bookNotFound": "Book not found"
 }

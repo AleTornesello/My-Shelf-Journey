@@ -16,3 +16,7 @@ class LocalDbFailure extends Failure {
 class GoogleApiBooksFailure extends Failure {
   const GoogleApiBooksFailure(super.errorMessage);
 }
+
+class GoogleApiBookNotFoundFailure extends Failure {
+  const GoogleApiBookNotFoundFailure() : super('');
+}

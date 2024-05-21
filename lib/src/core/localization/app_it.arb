@@ -11,5 +11,7 @@
   "insertBookManuallyLabel": "Inserisci libro manualmente",
   "loadingBooksKo": "Si è verificato un errore durante il caricamento della libreria",
   "creatingBookOk": "Libro creato con successo",
-  "creatingBookKo": "Si è verificato un errore durante la creazione del libro"
+  "creatingBookKo": "Si è verificato un errore durante la creazione del libro",
+  "bookDetailViewTitle": "Dettaglio",
+  "bookNotFound": "Libro non trovato"
 }

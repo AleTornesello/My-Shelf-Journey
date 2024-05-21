@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:my_shelf_journey_mobile/src/core/errors/failures.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/book_model.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_from_isbn_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
@@ -52,6 +53,10 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       CreateBookFromIsbnUsecaseParams(event.isbn),
     );
     result.fold((l) {
+      if (l is GoogleApiBookNotFoundFailure) {
+        emitter(BookNotFoundState());
+        return;
+      }
       emitter(ErrorCreateBooksState(l.errorMessage));
     }, (r) {
       emitter(SuccessCreateBooksState());

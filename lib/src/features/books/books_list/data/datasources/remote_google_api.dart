@@ -10,9 +10,16 @@ class RemoteGoogleApi extends AbstractGoogleApi {
   final dio = Dio();
 
   @override
-  Future<GoogleBookDetailEntity> getBookDetailByIsbn(String isbn) async {
+  Future<GoogleBookDetailEntity?> getBookDetailByIsbn(String isbn) async {
     final response = await dio
         .get('https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn');
+
+    if (response.data == null ||
+        response.data["items"] == null ||
+        response.data["items"].isEmpty) {
+      return null;
+    }
+
     return GoogleBookDetailEntity.fromJson(response.data["items"][0]);
   }
 }

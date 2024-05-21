@@ -28,4 +28,6 @@ final class ErrorCreateBooksState extends BooksState {
   const ErrorCreateBooksState(this.errorMsg);
 }
 
+final class BookNotFoundState extends BooksState {}
+
 final class SuccessCreateBooksState extends BooksState {}
