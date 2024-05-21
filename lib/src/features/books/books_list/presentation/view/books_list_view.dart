@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_shelf_journey_mobile/src/core/injections/msj_injections.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/book_model.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/category_model.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_from_isbn_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
@@ -11,7 +12,7 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentati
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/widgets/add_book_bottom_sheet.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/widgets/books_list.dart';
 import 'package:my_shelf_journey_mobile/src/features/skeleton/presentation/widgets/app_bar.dart';
-import 'package:my_shelf_journey_mobile/src/features/skeleton/presentation/widgets/inputs/dropdown.dart';
+import 'package:my_shelf_journey_mobile/src/features/shared/presentation/widgets/inputs/dropdown.dart';
 
 class BooksListView extends StatefulWidget {
   static const routeName = '/books-list';
@@ -23,39 +24,41 @@ class BooksListView extends StatefulWidget {
 }
 
 class _BooksListViewState extends State<BooksListView> {
-  final BooksBloc _booksBloc = BooksBloc(
-    getBooksUsecase: sl<GetBooksUsecase>(),
-    createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
-  );
-  final CategoriesBloc _categoriesBlock = CategoriesBloc(
-    getCategoriesUsecase: sl<GetCategoriesUsecase>(),
-  );
-
-  @override
-  void initState() {
-    // loadBooks();
-    loadCategories();
-    super.initState();
-  }
+  List<BookModel> _books = [];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MsjAppBar(
-        AppLocalizations.of(context)!.booksListViewTitle,
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            BlocConsumer<CategoriesBloc, CategoriesState>(
-                bloc: _categoriesBlock,
-                listener: (context, state) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BooksBloc(
+            getBooksUsecase: sl<GetBooksUsecase>(),
+            createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesBloc(
+            getCategoriesUsecase: sl<GetCategoriesUsecase>(),
+          )..add(
+              const OnGettingCategoriesEvent(true),
+            ),
+        ),
+      ],
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: MsjAppBar(
+            AppLocalizations.of(context)!.booksListViewTitle,
+          ),
+          body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                BlocConsumer<CategoriesBloc, CategoriesState>(
+                    listener: (context, state) {
                   if (state is SuccessGetCategoriesState) {
-                    loadBooks(categoryId: state.categories[0].id);
+                    loadBooks(context, categoryId: state.categories[0].id);
                   }
-                },
-                builder: (context, state) {
+                }, builder: (context, state) {
                   if (state is SuccessGetCategoriesState) {
                     return Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -77,55 +80,63 @@ class _BooksListViewState extends State<BooksListView> {
 
                   return const SizedBox();
                 }),
-            const SizedBox(
-              height: 12,
-            ),
-            Expanded(
-              child: BlocBuilder<BooksBloc, BooksState>(
-                  bloc: _booksBloc,
-                  builder: (context, state) {
+                const SizedBox(
+                  height: 12,
+                ),
+                Expanded(
+                  child: BlocBuilder<BooksBloc, BooksState>(
+                      builder: (context, state) {
                     if (state is SuccessGetBooksState) {
-                      return BooksList(state.books);
+                      _books = [];
+                      _books = state.books;
                     }
-                    return const Text('si è verificato un errore');
+                    return BooksList(_books);
                   }),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return const AddBookBottomSheet();
-              });
-        },
-        // foregroundColor: customizations[index].$1,
-        // backgroundColor: customizations[index].$2,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add),
-      ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              final booksBloc = context.read<BooksBloc>();
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return BlocProvider.value(
+                      value: booksBloc,
+                      child: const AddBookBottomSheet(),
+                    );
+                  });
+            },
+            // foregroundColor: customizations[index].$1,
+            // backgroundColor: customizations[index].$2,
+            shape: const CircleBorder(),
+            child: const Icon(Icons.add),
+          ),
+        );
+      }),
     );
   }
 
-  loadBooks({
+  loadBooks(
+    BuildContext context, {
     int? categoryId,
     bool withLoading = true,
   }) {
-    _booksBloc.add(
+    BlocProvider.of<BooksBloc>(context).add(
       OnGettingBooksEvent(
         withLoading,
         categoryId: categoryId,
+        sort: true,
       ),
     );
   }
 
-  loadCategories({bool withLoading = true}) {
-    _categoriesBlock.add(
-      OnGettingCategoriesEvent(withLoading),
-    );
-  }
+  // loadCategories({bool withLoading = true}) {
+  //   _categoriesBlock.add(
+  //     OnGettingCategoriesEvent(withLoading),
+  //   );
+  // }
 
   getCategoryLabel(CategoryModel category) {
     if (category.translationKey == null) {

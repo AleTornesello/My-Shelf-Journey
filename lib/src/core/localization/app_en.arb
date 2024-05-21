@@ -8,5 +8,8 @@
   "categoryDropdownLabel": "Categories",
   "defaultCategoryLabel": "Default",
   "scanBookIsbnLabel": "Scan ISBN code",
-  "insertBookManuallyLabel": "Insert book manually"
+  "insertBookManuallyLabel": "Insert book manually",
+  "loadingBooksKo": "An error occurred while loading the library",
+  "creatingBookOk": "Book created successfully",
+  "creatingBookKo": "An error occurred while creating the book"
 }

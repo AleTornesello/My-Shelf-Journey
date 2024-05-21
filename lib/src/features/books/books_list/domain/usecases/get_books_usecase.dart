@@ -5,9 +5,10 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/rep
 import 'package:my_shelf_journey_mobile/src/features/shared/domain/usecases/usecase.dart';
 
 class GetBooksUsecaseParams {
-  GetBooksUsecaseParams({this.categoryId});
+  GetBooksUsecaseParams({this.categoryId, this.sort = false});
 
   final int? categoryId;
+  final bool sort;
 }
 
 class GetBooksUsecase extends UseCase<List<BookModel>, GetBooksUsecaseParams> {
@@ -20,6 +21,7 @@ class GetBooksUsecase extends UseCase<List<BookModel>, GetBooksUsecaseParams> {
     GetBooksUsecaseParams params,
   ) async {
     final result = await repository.getBooks(
+      params.sort,
       params.categoryId,
     );
     return result.fold((l) {

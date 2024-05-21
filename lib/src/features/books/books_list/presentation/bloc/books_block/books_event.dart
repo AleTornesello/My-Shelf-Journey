@@ -10,10 +10,12 @@ sealed class BooksEvent extends Equatable {
 final class OnGettingBooksEvent extends BooksEvent {
   final int? categoryId;
   final bool withLoading;
+  final bool sort;
 
   const OnGettingBooksEvent(
     this.withLoading, {
     this.categoryId,
+    this.sort = false,
   });
 }
 

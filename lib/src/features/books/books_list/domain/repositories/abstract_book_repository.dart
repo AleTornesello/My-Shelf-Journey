@@ -3,5 +3,6 @@ import 'package:my_shelf_journey_mobile/src/core/errors/failures.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/book_model.dart';
 
 abstract class AbstractBookRepository {
-  Future<Either<Failure, List<BookModel>>> getBooks(int? categoryId);
+  Future<Either<Failure, List<BookModel>>> getBooks(bool sort, int? categoryId);
+  Future<Either<Failure, bool>> createBook(BookModel book);
 }

@@ -20,10 +20,13 @@ class LocalBookApi extends AbstractBookApi {
   }
 
   @override
-  Future<List<BookEntity>> getBooks(int? categoryId) async {
+  Future<List<BookEntity>> getBooks(bool sort, int? categoryId) async {
     final db = await database;
 
-    final List<Map<String, Object?>> result = await db.query(_tableName);
+    final List<Map<String, Object?>> result = await db.query(
+      _tableName,
+      orderBy: sort ? 'title' : 'id',
+    );
     return [
       for (final {
             'id': id as int,
@@ -36,5 +39,20 @@ class LocalBookApi extends AbstractBookApi {
           imageUri: imageUri,
         ),
     ];
+  }
+
+  @override
+  Future<bool> createBook(BookEntity book) async {
+    final db = await database;
+    final result = await db.insert(
+      _tableName,
+      {
+        'title': book.title,
+        'imageUri': book.imageUri,
+        'categoryId': 1,
+      },
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
+    return result > 0;
   }
 }

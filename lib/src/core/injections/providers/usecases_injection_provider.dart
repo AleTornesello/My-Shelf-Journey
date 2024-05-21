@@ -6,5 +6,5 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/use
 Future<void> initUsecasesInjections() async {
   sl.registerSingleton(GetBooksUsecase(sl()));
   sl.registerSingleton(GetCategoriesUsecase(sl()));
-  sl.registerSingleton(CreateBookFromIsbnUsecase(sl()));
+  sl.registerSingleton(CreateBookFromIsbnUsecase(sl(), sl()));
 }

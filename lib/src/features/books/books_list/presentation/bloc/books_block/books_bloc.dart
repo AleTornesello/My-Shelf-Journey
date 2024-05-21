@@ -28,7 +28,10 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     }
 
     final result = await getBooksUsecase.call(
-      GetBooksUsecaseParams(categoryId: event.categoryId),
+      GetBooksUsecaseParams(
+        categoryId: event.categoryId,
+        sort: event.sort,
+      ),
     );
     result.fold((l) {
       emitter(ErrorGetBooksState(l.errorMessage));
