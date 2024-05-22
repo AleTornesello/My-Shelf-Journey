@@ -11,8 +11,8 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentati
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/categories_bloc/categories_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/widgets/add_book_bottom_sheet.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/widgets/books_list.dart';
-import 'package:my_shelf_journey_mobile/src/features/skeleton/presentation/widgets/app_bar.dart';
 import 'package:my_shelf_journey_mobile/src/features/shared/presentation/widgets/inputs/dropdown.dart';
+import 'package:my_shelf_journey_mobile/src/features/skeleton/presentation/widgets/app_bar.dart';
 
 class BooksListView extends StatefulWidget {
   static const routeName = '/books-list';
@@ -84,12 +84,13 @@ class _BooksListViewState extends State<BooksListView> {
                   height: 12,
                 ),
                 Expanded(
-                  child: BlocBuilder<BooksBloc, BooksState>(
-                      builder: (context, state) {
+                  child: BlocConsumer<BooksBloc, BooksState>(
+                      listener: (context, state) {
                     if (state is SuccessGetBooksState) {
                       _books = [];
                       _books = state.books;
                     }
+                  }, builder: (context, state) {
                     return BooksList(_books);
                   }),
                 ),

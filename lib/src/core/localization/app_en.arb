@@ -13,5 +13,6 @@
   "creatingBookOk": "Book created successfully",
   "creatingBookKo": "An error occurred while creating the book",
   "bookDetailViewTitle": "Details",
-  "bookNotFound": "Book not found"
+  "bookNotFound": "Book not found",
+  "bookVolumes": "Volumes"
 }
