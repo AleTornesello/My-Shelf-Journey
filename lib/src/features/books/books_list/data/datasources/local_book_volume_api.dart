@@ -81,4 +81,25 @@ class LocalBookVolumeApi extends AbstractBookVolumeApi {
     );
     return result > 0;
   }
+
+  @override
+  Future<bool> shiftBelowBookVolumes(int bookId, int fromOrderIndex) async {
+    final db = await database;
+    final queryResult = await db.query(
+      _tableName,
+      where: 'bookId = ? AND orderIndex >= ?',
+      whereArgs: [bookId, fromOrderIndex],
+    );
+    for (var element in queryResult) {
+      db.update(
+        _tableName,
+        {
+          'orderIndex': (element['orderIndex'] as int) + 1,
+        },
+        where: 'id = ?',
+        whereArgs: [element['id']],
+      );
+    }
+    return queryResult.isNotEmpty;
+  }
 }

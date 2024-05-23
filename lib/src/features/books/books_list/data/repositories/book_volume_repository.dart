@@ -34,6 +34,10 @@ class BookVolumeRepository extends AbstractBookVolumeRepository {
   ) async {
     try {
       final entity = BookVolumeMapper.toEntity(volume);
+      await _bookVolumeApi.shiftBelowBookVolumes(
+        entity.bookId!,
+        entity.orderIndex!,
+      );
       await _bookVolumeApi.createBookVolume(entity);
       return const Right(true);
     } catch (e) {

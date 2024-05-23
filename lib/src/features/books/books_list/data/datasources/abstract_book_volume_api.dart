@@ -15,4 +15,6 @@ abstract class AbstractBookVolumeApi {
     int volumeId,
     BookVolumeStatus newStatus,
   );
+
+  Future<bool> shiftBelowBookVolumes(int bookId, int fromOrderIndex);
 }
