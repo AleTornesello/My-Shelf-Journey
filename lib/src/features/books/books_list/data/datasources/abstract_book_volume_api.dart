@@ -5,4 +5,8 @@ abstract class AbstractBookVolumeApi {
     bool sort,
     int bookId,
   );
+
+  Future<bool> createBookVolume(
+    BookVolumeEntity volume,
+  );
 }

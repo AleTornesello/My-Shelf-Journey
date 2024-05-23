@@ -14,5 +14,12 @@
   "creatingBookKo": "Si è verificato un errore durante la creazione del libro",
   "bookDetailViewTitle": "Dettaglio",
   "bookNotFound": "Libro non trovato",
-  "bookVolumes": "Volumi"
+  "bookVolumes": "Volumi",
+  "createVolume": "Crea Volume",
+  "volumeName": "Nome",
+  "newBookVolumeViewTitle": "Crea Volume",
+  "requiredFieldError": "Il campo {name} è obbligatorio",
+  "optionalField": "{name} (opzionale)",
+  "creatingBookVolumeOk": "Volume creato con successo",
+  "creatingBookVolumeKo": "Si è verificato un errore durante la creazione del volume"
 }

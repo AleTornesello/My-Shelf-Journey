@@ -20,3 +20,12 @@ final class SuccessGetBookVolumesState extends BookVolumesState {
   final List<BookVolumeModel> volumes;
   const SuccessGetBookVolumesState(this.volumes);
 }
+
+final class CreatingBookVolumeState extends BookVolumesState {}
+
+final class ErrorCreateBookVolumeState extends BookVolumesState {
+  final String errorMsg;
+  const ErrorCreateBookVolumeState(this.errorMsg);
+}
+
+final class SuccessCreateBookVolumeState extends BookVolumesState {}

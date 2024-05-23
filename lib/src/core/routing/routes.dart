@@ -3,11 +3,13 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/view/book_detail_view.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/view/books_list_view.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/view/new_book_volume_view.dart';
 
 class Routes {
   static final Map<String, Widget> routes = HashMap.from({
     BooksListView.routeName: const BooksListView(),
     BookDetailView.routeName: const BookDetailView(),
+    NewBookVolumeView.routeName: const NewBookVolumeView(),
     "**": const BooksListView()
   });
 

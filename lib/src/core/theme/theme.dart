@@ -11,6 +11,8 @@ class MsjThemeDataGenerator {
           ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: ColorConstants.primary,
+          foregroundColor: ColorConstants.primaryText,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                 StylesConstants.borderRadius,

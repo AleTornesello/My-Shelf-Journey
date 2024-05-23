@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:my_shelf_journey_mobile/src/core/injections/msj_injections.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/book_model.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/category_model.dart';
-import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_from_isbn_usecase.dart';
-import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
-import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_categories_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/books_block/books_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/categories_bloc/categories_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/widgets/add_book_bottom_sheet.dart';
@@ -28,95 +24,78 @@ class _BooksListViewState extends State<BooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => BooksBloc(
-            getBooksUsecase: sl<GetBooksUsecase>(),
-            createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
-          ),
+    return Builder(builder: (context) {
+      return Scaffold(
+        appBar: MsjAppBar(
+          AppLocalizations.of(context)!.booksListViewTitle,
         ),
-        BlocProvider(
-          create: (context) => CategoriesBloc(
-            getCategoriesUsecase: sl<GetCategoriesUsecase>(),
-          )..add(
-              const OnGettingCategoriesEvent(true),
-            ),
-        ),
-      ],
-      child: Builder(builder: (context) {
-        return Scaffold(
-          appBar: MsjAppBar(
-            AppLocalizations.of(context)!.booksListViewTitle,
-          ),
-          body: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                BlocConsumer<CategoriesBloc, CategoriesState>(
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: [
+              BlocConsumer<CategoriesBloc, CategoriesState>(
+                  listener: (context, state) {
+                if (state is SuccessGetCategoriesState) {
+                  loadBooks(context, categoryId: state.categories[0].id);
+                }
+              }, builder: (context, state) {
+                if (state is SuccessGetCategoriesState) {
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: MsjDropdown<int>(
+                      label:
+                          AppLocalizations.of(context)!.categoryDropdownLabel,
+                      items: [
+                        for (final category in state.categories)
+                          SelectItem(
+                            getCategoryLabel(category),
+                            category.id!,
+                          )
+                      ],
+                      onChanged: (item) {},
+                      value: 1,
+                    ),
+                  );
+                }
+
+                return const SizedBox();
+              }),
+              const SizedBox(
+                height: 12,
+              ),
+              Expanded(
+                child: BlocConsumer<BooksBloc, BooksState>(
                     listener: (context, state) {
-                  if (state is SuccessGetCategoriesState) {
-                    loadBooks(context, categoryId: state.categories[0].id);
+                  if (state is SuccessGetBooksState) {
+                    _books = [];
+                    _books = state.books;
                   }
                 }, builder: (context, state) {
-                  if (state is SuccessGetCategoriesState) {
-                    return Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: MsjDropdown<int>(
-                        label:
-                            AppLocalizations.of(context)!.categoryDropdownLabel,
-                        items: [
-                          for (final category in state.categories)
-                            SelectItem(
-                              getCategoryLabel(category),
-                              category.id!,
-                            )
-                        ],
-                        onChanged: (item) {},
-                        value: 1,
-                      ),
-                    );
-                  }
-
-                  return const SizedBox();
+                  return BooksList(_books);
                 }),
-                const SizedBox(
-                  height: 12,
-                ),
-                Expanded(
-                  child: BlocConsumer<BooksBloc, BooksState>(
-                      listener: (context, state) {
-                    if (state is SuccessGetBooksState) {
-                      _books = [];
-                      _books = state.books;
-                    }
-                  }, builder: (context, state) {
-                    return BooksList(_books);
-                  }),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              final booksBloc = context.read<BooksBloc>();
-              showModalBottomSheet<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return BlocProvider.value(
-                      value: booksBloc,
-                      child: const AddBookBottomSheet(),
-                    );
-                  });
-            },
-            // foregroundColor: customizations[index].$1,
-            // backgroundColor: customizations[index].$2,
-            shape: const CircleBorder(),
-            child: const Icon(Icons.add),
-          ),
-        );
-      }),
-    );
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            final booksBloc = context.read<BooksBloc>();
+            showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return BlocProvider.value(
+                    value: booksBloc,
+                    child: const AddBookBottomSheet(),
+                  );
+                });
+          },
+          // foregroundColor: customizations[index].$1,
+          // backgroundColor: customizations[index].$2,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.add),
+        ),
+      );
+    });
   }
 
   loadBooks(

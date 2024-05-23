@@ -27,4 +27,17 @@ class BookVolumeRepository extends AbstractBookVolumeRepository {
       return Left(LocalDbFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> createBookVolume(
+    BookVolumeModel volume,
+  ) async {
+    try {
+      final entity = BookVolumeMapper.toEntity(volume);
+      await _bookVolumeApi.createBookVolume(entity);
+      return const Right(true);
+    } catch (e) {
+      return Left(LocalDbFailure(e.toString()));
+    }
+  }
 }

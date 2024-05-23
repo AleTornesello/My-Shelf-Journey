@@ -12,15 +12,10 @@ class AddBookBottomSheet extends StatefulWidget {
   const AddBookBottomSheet({super.key});
 
   @override
-  State<AddBookBottomSheet> createState() => _BooksListViewState();
+  State<AddBookBottomSheet> createState() => _AddBookBottomSheetState();
 }
 
-class _BooksListViewState extends State<AddBookBottomSheet> {
-  // final BooksBloc _booksBloc = BooksBloc(
-  //   getBooksUsecase: sl<GetBooksUsecase>(),
-  //   createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
-  // );
-
+class _AddBookBottomSheetState extends State<AddBookBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BooksBloc, BooksState>(

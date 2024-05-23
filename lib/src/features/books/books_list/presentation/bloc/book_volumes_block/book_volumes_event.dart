@@ -18,3 +18,13 @@ final class OnGettingBookVolumesEvent extends BookVolumesEvent {
     this.sort = false,
   });
 }
+
+final class OnCreateBookVolumeEvent extends BookVolumesEvent {
+  final BookVolumeModel volume;
+  final bool withLoading;
+
+  const OnCreateBookVolumeEvent(
+    this.withLoading,
+    this.volume,
+  );
+}

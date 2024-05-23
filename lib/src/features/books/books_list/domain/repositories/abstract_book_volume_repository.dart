@@ -7,4 +7,8 @@ abstract class AbstractBookVolumeRepository {
     bool sort,
     int bookId,
   );
+
+  Future<Either<Failure, bool>> createBookVolume(
+    BookVolumeModel volume,
+  );
 }

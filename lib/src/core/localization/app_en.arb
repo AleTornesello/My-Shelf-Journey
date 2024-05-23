@@ -14,5 +14,12 @@
   "creatingBookKo": "An error occurred while creating the book",
   "bookDetailViewTitle": "Details",
   "bookNotFound": "Book not found",
-  "bookVolumes": "Volumes"
+  "bookVolumes": "Volumes",
+  "createVolume": "Create Volume",
+  "volumeName": "Name",
+  "newBookVolumeViewTitle": "New volume",
+  "requiredFieldError": "The field {name} is required",
+  "optionalField": "{name} (optional)",
+  "creatingBookVolumeOk": "Volume created successfully",
+  "creatingBookVolumeKo": "An error occurred while creating the volume"
 }

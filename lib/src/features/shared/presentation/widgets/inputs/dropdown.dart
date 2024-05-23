@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shelf_journey_mobile/src/core/constants/colors.dart';
+import 'package:my_shelf_journey_mobile/src/core/constants/styles.dart';
 
 class SelectItem<T> {
   SelectItem(this.label, this.value);
@@ -32,7 +33,7 @@ class MsjDropdown<T> extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: ColorConstants.gray200,
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(StylesConstants.borderRadius),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<T>(

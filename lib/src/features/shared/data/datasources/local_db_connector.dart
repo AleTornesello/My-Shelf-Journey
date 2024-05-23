@@ -19,7 +19,7 @@ class LocalDbConnector {
             'CREATE TABLE categories(id integer primary key, name varchar(255), translationKey varchar(255))',
           ),
           db.execute(
-            'CREATE TABLE volumes(id integer primary key, name varchar(255), orderIndex integer, bookId integer, foreign key(bookId) references books(id))',
+            'CREATE TABLE volumes(id integer primary key, name varchar(255), orderIndex integer, status integer, bookId integer, foreign key(bookId) references books(id))',
           )
         ]);
         await db.insert(
