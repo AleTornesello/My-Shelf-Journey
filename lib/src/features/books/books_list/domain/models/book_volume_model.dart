@@ -6,6 +6,10 @@ enum BookVolumeStatus {
 
   final int value;
   const BookVolumeStatus(this.value);
+
+  static BookVolumeStatus getByValue(num i) {
+    return BookVolumeStatus.values.firstWhere((x) => x.value == i);
+  }
 }
 
 class BookVolumeModel extends Equatable {

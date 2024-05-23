@@ -40,4 +40,17 @@ class BookVolumeRepository extends AbstractBookVolumeRepository {
       return Left(LocalDbFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> setBookVolumeStatus(
+    int volumeId,
+    BookVolumeStatus newStatus,
+  ) async {
+    try {
+      await _bookVolumeApi.setBookVolumeStatus(volumeId, newStatus);
+      return const Right(true);
+    } catch (e) {
+      return Left(LocalDbFailure(e.toString()));
+    }
+  }
 }

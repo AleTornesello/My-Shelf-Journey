@@ -11,22 +11,17 @@ class BookVolumesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: StylesConstants.gap,
-      ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                for (final volume in volumes) BookVolumesListItem(volume),
-                const Gap(StylesConstants.gap),
-              ],
-            ),
-          );
-        },
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              for (final volume in volumes) BookVolumesListItem(volume),
+              const Gap(StylesConstants.gap),
+            ],
+          ),
+        );
+      },
     );
   }
 }

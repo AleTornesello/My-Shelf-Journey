@@ -10,6 +10,8 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/use
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_book_volumes_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_categories_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_read_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_unread_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/book_volumes_block/book_volumes_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/books_block/books_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/categories_bloc/categories_bloc.dart';
@@ -38,6 +40,8 @@ class MyShelfJourney extends StatelessWidget {
           create: (context) => BookVolumesBloc(
             getBookVolumesUsecase: sl<GetBookVolumesUsecase>(),
             createBookVolumeUsecase: sl<CreateBookVolumeUsecase>(),
+            markBookVolumeAsReadUsecase: sl<MarkBookVolumeAsReadUsecase>(),
+            markBookVolumeAsUnreadUsecase: sl<MarkBookVolumeAsUnreadUsecase>(),
           ),
         ),
       ],

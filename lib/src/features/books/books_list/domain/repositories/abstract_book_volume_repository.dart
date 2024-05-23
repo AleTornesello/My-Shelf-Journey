@@ -11,4 +11,9 @@ abstract class AbstractBookVolumeRepository {
   Future<Either<Failure, bool>> createBookVolume(
     BookVolumeModel volume,
   );
+
+  Future<Either<Failure, bool>> setBookVolumeStatus(
+    int volumeId,
+    BookVolumeStatus newStatus,
+  );
 }

@@ -72,6 +72,8 @@ class _BookDetailViewState extends State<BookDetailView> {
                       _volumes = state.volumes;
                     } else if (state is SuccessCreateBookVolumeState) {
                       loadVolumes(book);
+                    } else if (state is SuccessUpdateBookVolumeStatusState) {
+                      loadVolumes(book);
                     }
                   },
                   builder: (context, state) {

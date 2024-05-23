@@ -29,3 +29,12 @@ final class ErrorCreateBookVolumeState extends BookVolumesState {
 }
 
 final class SuccessCreateBookVolumeState extends BookVolumesState {}
+
+final class UpdatingBookVolumeState extends BookVolumesState {}
+
+final class ErrorUpdateBookVolumeStatusState extends BookVolumesState {
+  final String errorMsg;
+  const ErrorUpdateBookVolumeStatusState(this.errorMsg);
+}
+
+final class SuccessUpdateBookVolumeStatusState extends BookVolumesState {}

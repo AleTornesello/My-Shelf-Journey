@@ -7,6 +7,9 @@ class BookVolumeMapper {
       id: entity.id,
       name: entity.name,
       orderIndex: entity.orderIndex,
+      status: entity.status != null
+          ? BookVolumeStatus.getByValue(entity.status!)
+          : null,
       bookId: entity.bookId,
     );
   }
@@ -16,6 +19,7 @@ class BookVolumeMapper {
       id: model.id,
       name: model.name,
       orderIndex: model.orderIndex,
+      status: model.status?.value,
       bookId: model.bookId,
     );
   }

@@ -36,12 +36,14 @@ class LocalBookVolumeApi extends AbstractBookVolumeApi {
             'id': id as int,
             'name': name as String,
             'orderIndex': orderIndex as int,
+            'status': status as int,
             'bookId': bookId as int,
           } in result)
         BookVolumeEntity(
           id: id,
           name: name,
           orderIndex: orderIndex,
+          status: status,
           bookId: bookId,
         ),
     ];
@@ -59,6 +61,23 @@ class LocalBookVolumeApi extends AbstractBookVolumeApi {
         'bookId': volume.bookId,
       },
       conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
+    return result > 0;
+  }
+
+  @override
+  Future<bool> setBookVolumeStatus(
+    int volumeId,
+    BookVolumeStatus newStatus,
+  ) async {
+    final db = await database;
+    final result = await db.update(
+      _tableName,
+      {
+        'status': newStatus.value,
+      },
+      where: 'id = ?',
+      whereArgs: [volumeId],
     );
     return result > 0;
   }

@@ -28,3 +28,23 @@ final class OnCreateBookVolumeEvent extends BookVolumesEvent {
     this.volume,
   );
 }
+
+final class OnMarkBookVolumeAsReadEvent extends BookVolumesEvent {
+  final int volumeId;
+  final bool withLoading;
+
+  const OnMarkBookVolumeAsReadEvent(
+    this.volumeId, {
+    this.withLoading = false,
+  });
+}
+
+final class OnMarkBookVolumeAsUnreadEvent extends BookVolumesEvent {
+  final int volumeId;
+  final bool withLoading;
+
+  const OnMarkBookVolumeAsUnreadEvent(
+    this.volumeId, {
+    this.withLoading = false,
+  });
+}

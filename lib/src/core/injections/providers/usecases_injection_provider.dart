@@ -4,6 +4,8 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/use
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_book_volumes_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_categories_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_read_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_unread_usecase.dart';
 
 Future<void> initUsecasesInjections() async {
   sl.registerSingleton(GetBooksUsecase(sl()));
@@ -11,4 +13,6 @@ Future<void> initUsecasesInjections() async {
   sl.registerSingleton(CreateBookFromIsbnUsecase(sl(), sl()));
   sl.registerSingleton(GetBookVolumesUsecase(sl()));
   sl.registerSingleton(CreateBookVolumeUsecase(sl()));
+  sl.registerSingleton(MarkBookVolumeAsReadUsecase(sl()));
+  sl.registerSingleton(MarkBookVolumeAsUnreadUsecase(sl()));
 }
