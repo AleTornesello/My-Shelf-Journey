@@ -24,20 +24,29 @@ class BooksListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 StylesConstants.borderRadius,
               ),
-              child: Image(
-                image: CachedNetworkImageProvider(book.imageUri!),
-                width: 60,
-                height: 60,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: ColorConstants.gray200,
-                  ),
-                  child: const Icon(Icons.image),
-                ),
-              ),
+              child: book.imageUri == null || book.imageUri!.isEmpty
+                  ? Container(
+                      width: 60,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: ColorConstants.gray200,
+                      ),
+                      child: const Icon(Icons.image),
+                    )
+                  : Image(
+                      image: CachedNetworkImageProvider(book.imageUri!),
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        width: 60,
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          color: ColorConstants.gray200,
+                        ),
+                        child: const Icon(Icons.image),
+                      ),
+                    ),
             ),
             const Gap(StylesConstants.gap),
             Flexible(

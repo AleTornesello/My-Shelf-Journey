@@ -19,20 +19,29 @@ class BookDetailHero extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             StylesConstants.borderRadius,
           ),
-          child: Image(
-            image: CachedNetworkImageProvider(book.imageUri!),
-            width: 100,
-            height: 150,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) => Container(
-              width: 100,
-              height: 150,
-              decoration: const BoxDecoration(
-                color: ColorConstants.gray200,
-              ),
-              child: const Icon(Icons.image),
-            ),
-          ),
+          child: book.imageUri == null || book.imageUri!.isEmpty
+              ? Container(
+                  width: 100,
+                  height: 150,
+                  decoration: const BoxDecoration(
+                    color: ColorConstants.gray200,
+                  ),
+                  child: const Icon(Icons.image),
+                )
+              : Image(
+                  image: CachedNetworkImageProvider(book.imageUri!),
+                  width: 100,
+                  height: 150,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    width: 100,
+                    height: 150,
+                    decoration: const BoxDecoration(
+                      color: ColorConstants.gray200,
+                    ),
+                    child: const Icon(Icons.image),
+                  ),
+                ),
         ),
         const Gap(StylesConstants.gap),
         Flexible(
