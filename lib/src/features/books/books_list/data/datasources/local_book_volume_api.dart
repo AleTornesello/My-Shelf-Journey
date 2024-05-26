@@ -30,6 +30,8 @@ class LocalBookVolumeApi extends AbstractBookVolumeApi {
     final List<Map<String, Object?>> result = await db.query(
       _tableName,
       orderBy: sort ? 'orderIndex DESC' : 'id',
+      where: 'bookId = ?',
+      whereArgs: [bookId],
     );
     return [
       for (final {
