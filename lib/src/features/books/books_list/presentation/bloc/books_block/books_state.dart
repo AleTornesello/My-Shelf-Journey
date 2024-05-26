@@ -23,11 +23,11 @@ final class SuccessGetBooksState extends BooksState {
 
 final class CreatingBooksState extends BooksState {}
 
-final class ErrorCreateBooksState extends BooksState {
+final class ErrorCreateBookState extends BooksState {
   final String errorMsg;
-  const ErrorCreateBooksState(this.errorMsg);
+  const ErrorCreateBookState(this.errorMsg);
 }
 
 final class BookNotFoundState extends BooksState {}
 
-final class SuccessCreateBooksState extends BooksState {}
+final class SuccessCreateBookState extends BooksState {}

@@ -21,5 +21,8 @@
   "requiredFieldError": "Il campo {name} è obbligatorio",
   "optionalField": "{name} (opzionale)",
   "creatingBookVolumeOk": "Volume creato con successo",
-  "creatingBookVolumeKo": "Si è verificato un errore durante la creazione del volume"
+  "creatingBookVolumeKo": "Si è verificato un errore durante la creazione del volume",
+  "bookTitle": "Titolo",
+  "bookImageUri": "URI Immagine",
+  "newBookViewTitle": "Nuovo libro"
 }

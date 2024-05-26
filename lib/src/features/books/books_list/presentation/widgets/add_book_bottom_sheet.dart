@@ -4,8 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:my_shelf_journey_mobile/src/core/constants/styles.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/books_block/books_bloc.dart';
-import 'package:my_shelf_journey_mobile/src/features/shared/presentation/utils/snackbars/error_snack_bar.dart';
-import 'package:my_shelf_journey_mobile/src/features/shared/presentation/utils/snackbars/success_snack_bar.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/view/new_book_view.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 class AddBookBottomSheet extends StatefulWidget {
@@ -20,25 +19,13 @@ class _AddBookBottomSheetState extends State<AddBookBottomSheet> {
   Widget build(BuildContext context) {
     return BlocConsumer<BooksBloc, BooksState>(
       listener: (context, state) {
-        if (state is SuccessCreateBooksState) {
+        if (state is SuccessCreateBookState) {
           loadBooks(context);
           Navigator.pop(context);
-          SuccessSnackBar.show(
-            context,
-            AppLocalizations.of(context)!.creatingBookOk,
-          );
-        } else if (state is ErrorCreateBooksState) {
+        } else if (state is ErrorCreateBookState) {
           Navigator.pop(context);
-          ErrorSnackBar.show(
-            context,
-            AppLocalizations.of(context)!.creatingBookKo,
-          );
         } else if (state is BookNotFoundState) {
           Navigator.pop(context);
-          ErrorSnackBar.show(
-            context,
-            AppLocalizations.of(context)!.bookNotFound,
-          );
         }
       },
       builder: (context, state) {
@@ -78,24 +65,25 @@ class _AddBookBottomSheetState extends State<AddBookBottomSheet> {
                 ),
                 const Gap(StylesConstants.gap),
                 ElevatedButton(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.edit),
-                      const Gap(StylesConstants.gap),
-                      Flexible(
-                        flex: 1,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            AppLocalizations.of(context)!
-                                .insertBookManuallyLabel,
+                    child: Row(
+                      children: [
+                        const Icon(Icons.edit),
+                        const Gap(StylesConstants.gap),
+                        Flexible(
+                          flex: 1,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .insertBookManuallyLabel,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, NewBookView.routeName);
+                    }),
               ],
             ),
           ),

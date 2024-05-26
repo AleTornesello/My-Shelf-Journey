@@ -11,37 +11,32 @@ class BooksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: StylesConstants.gap,
-      ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxWidth = constraints.maxWidth;
-          const itemMinWidth = 300;
-          double itemWidth;
-
-          if (maxWidth < itemMinWidth) {
-            itemWidth = maxWidth;
-          } else {
-            final itemsCount = (maxWidth / itemMinWidth).floor();
-            itemWidth = maxWidth / itemsCount;
-          }
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                Wrap(
-                  runSpacing: StylesConstants.gap,
-                  children: [
-                    for (final book in books) BooksListItem(book, itemWidth)
-                  ],
-                ),
-                const Gap(StylesConstants.gap),
-              ],
-            ),
-          );
-        },
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
+        const itemMinWidth = 300;
+        double itemWidth;
+    
+        if (maxWidth < itemMinWidth) {
+          itemWidth = maxWidth;
+        } else {
+          final itemsCount = (maxWidth / itemMinWidth).floor();
+          itemWidth = maxWidth / itemsCount;
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Wrap(
+                runSpacing: StylesConstants.gap,
+                children: [
+                  for (final book in books) BooksListItem(book, itemWidth)
+                ],
+              ),
+              const Gap(StylesConstants.gap),
+            ],
+          ),
+        );
+      },
     );
   }
 }

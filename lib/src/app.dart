@@ -6,6 +6,7 @@ import 'package:my_shelf_journey_mobile/src/core/injections/msj_injections.dart'
 import 'package:my_shelf_journey_mobile/src/core/routing/routes.dart';
 import 'package:my_shelf_journey_mobile/src/core/theme/theme.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_from_isbn_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_volume_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_book_volumes_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
@@ -27,14 +28,13 @@ class MyShelfJourney extends StatelessWidget {
           create: (context) => BooksBloc(
             getBooksUsecase: sl<GetBooksUsecase>(),
             createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
+            createBookUsecase: sl<CreateBookUsecase>(),
           ),
         ),
         BlocProvider(
           create: (context) => CategoriesBloc(
             getCategoriesUsecase: sl<GetCategoriesUsecase>(),
-          )..add(
-              const OnGettingCategoriesEvent(true),
-            ),
+          ),
         ),
         BlocProvider(
           create: (context) => BookVolumesBloc(

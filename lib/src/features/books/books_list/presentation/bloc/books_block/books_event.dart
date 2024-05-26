@@ -19,6 +19,16 @@ final class OnGettingBooksEvent extends BooksEvent {
   });
 }
 
+final class OnCreateBookEvent extends BooksEvent {
+  final BookModel book;
+  final bool withLoading;
+
+  const OnCreateBookEvent(
+    this.withLoading,
+    this.book,
+  );
+}
+
 final class OnCreateBookFromIsbnEvent extends BooksEvent {
   final String isbn;
   final bool withLoading;

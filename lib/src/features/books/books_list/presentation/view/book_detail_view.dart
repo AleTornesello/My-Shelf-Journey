@@ -34,7 +34,7 @@ class _BookDetailViewState extends State<BookDetailView> {
           AppLocalizations.of(context)!.bookDetailViewTitle,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(StylesConstants.gap),
+          padding: const EdgeInsets.all(StylesConstants.padding2),
           child: Column(
             children: [
               SizedBox(
