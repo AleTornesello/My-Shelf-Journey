@@ -14,78 +14,67 @@ class BookVolumesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            decoration: BoxDecoration(
-              color: volume.status == BookVolumeStatus.read
-                  ? ColorConstants.primary
-                  : ColorConstants.gray400,
-              borderRadius: BorderRadius.circular(StylesConstants.borderRadius),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  volume.name!,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                      ),
-                ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 50,
+          decoration: BoxDecoration(
+            color: volume.status == BookVolumeStatus.read
+                ? ColorConstants.primary
+                : ColorConstants.gray400,
+            borderRadius: BorderRadius.circular(StylesConstants.borderRadius),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                volume.name!,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                    ),
               ),
             ),
           ),
-          const Spacer(),
-          TextButton(
-            onPressed: () {
-              if (volume.status == BookVolumeStatus.read) {
-                markVolumeAsUnread(context, volume.id!);
-                return;
-              }
+        ),
+        const Spacer(),
+        IconButton(
+          onPressed: () {
+            if (volume.status == BookVolumeStatus.read) {
+              markVolumeAsUnread(context, volume.id!);
+              return;
+            }
 
-              markVolumeAsRead(context, volume.id!);
-            },
-            child: Icon(
-              volume.status == BookVolumeStatus.read
-                  ? Icons.close
-                  : Icons.check,
-            ),
+            markVolumeAsRead(context, volume.id!);
+          },
+          icon: Icon(
+            volume.status == BookVolumeStatus.read ? Icons.close : Icons.check,
           ),
-          const Gap(StylesConstants.gap),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                NewBookVolumeView.routeName,
-                arguments: NewBookVolumeViewRouteArgs(
-                  volume.bookId!,
-                  volume.orderIndex!,
-                ),
-              );
-            },
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.add,
-                ),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                ),
-              ],
-            ),
+        ),
+        const Gap(StylesConstants.gap),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              NewBookVolumeView.routeName,
+              arguments: NewBookVolumeViewRouteArgs(
+                volume.bookId!,
+                volume.orderIndex!,
+              ),
+            );
+          },
+          child: const Row(
+            children: [
+              Icon(
+                Icons.add,
+              ),
+              Icon(
+                Icons.keyboard_arrow_down,
+              ),
+            ],
           ),
-        ],
-      ),
-      onTap: () {
-        // Navigator.pushNamed(
-        //   context,
-        //   BookDetailView.routeName,
-        //   arguments: book,
-        // );
-      },
+        ),
+      ],
     );
   }
 

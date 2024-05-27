@@ -2,9 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:my_shelf_journey_mobile/src/core/errors/failures.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/book_model.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/models/jikan_manga_model.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_from_isbn_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/create_book_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_books_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/search_book_from_jikan_usecase.dart';
 
 part 'books_event.dart';
 part 'books_state.dart';
@@ -13,15 +15,18 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   final GetBooksUsecase getBooksUsecase;
   final CreateBookFromIsbnUsecase createBookFromIsbnUsecase;
   final CreateBookUsecase createBookUsecase;
+  final SearchBookFromJikanUsecase searchBookFromJikanUsecase;
 
   BooksBloc({
     required this.getBooksUsecase,
     required this.createBookFromIsbnUsecase,
     required this.createBookUsecase,
+    required this.searchBookFromJikanUsecase,
   }) : super(LoadingBooksState()) {
     on<OnGettingBooksEvent>(_onGettingBooksEvent);
     on<OnCreateBookEvent>(_onCreateBookEvent);
     on<OnCreateBookFromIsbnEvent>(_onCreateBookFromIsbnEvent);
+    on<OnGettingJikanBooksEvent>(_onGettingJikanBooksEvent);
   }
 
   _onGettingBooksEvent(
@@ -82,6 +87,24 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       emitter(ErrorCreateBookState(l.errorMessage));
     }, (r) {
       emitter(SuccessCreateBookState());
+    });
+  }
+
+  _onGettingJikanBooksEvent(
+    OnGettingJikanBooksEvent event,
+    Emitter<BooksState> emitter,
+  ) async {
+    if (event.withLoading) {
+      emitter(LoadingJikanBooksState());
+    }
+
+    final result = await searchBookFromJikanUsecase.call(
+      SearchBookFromJikanUsecaseParams(event.book),
+    );
+    result.fold((l) {
+      emitter(ErrorGetJikanBooksState(l.errorMessage));
+    }, (r) {
+      emitter(SuccessGetJikanBooksState(r));
     });
   }
 }

@@ -13,6 +13,7 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/use
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/get_categories_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_read_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/mark_book_volume_as_unread_usecase.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/usecases/search_book_from_jikan_usecase.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/book_volumes_block/book_volumes_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/books_block/books_bloc.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/presentation/bloc/categories_bloc/categories_bloc.dart';
@@ -29,6 +30,7 @@ class MyShelfJourney extends StatelessWidget {
             getBooksUsecase: sl<GetBooksUsecase>(),
             createBookFromIsbnUsecase: sl<CreateBookFromIsbnUsecase>(),
             createBookUsecase: sl<CreateBookUsecase>(),
+            searchBookFromJikanUsecase: sl<SearchBookFromJikanUsecase>(),
           ),
         ),
         BlocProvider(

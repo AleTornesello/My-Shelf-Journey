@@ -31,3 +31,15 @@ final class ErrorCreateBookState extends BooksState {
 final class BookNotFoundState extends BooksState {}
 
 final class SuccessCreateBookState extends BooksState {}
+
+final class LoadingJikanBooksState extends BooksState {}
+
+final class ErrorGetJikanBooksState extends BooksState {
+  final String errorMsg;
+  const ErrorGetJikanBooksState(this.errorMsg);
+}
+
+final class SuccessGetJikanBooksState extends BooksState {
+  final JikanMangaModel books;
+  const SuccessGetJikanBooksState(this.books);
+}

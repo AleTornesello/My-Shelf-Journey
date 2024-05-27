@@ -38,3 +38,10 @@ final class OnCreateBookFromIsbnEvent extends BooksEvent {
     this.isbn,
   );
 }
+
+final class OnGettingJikanBooksEvent extends BooksEvent {
+  final bool withLoading;
+  final BookModel book;
+
+  const OnGettingJikanBooksEvent(this.book, {this.withLoading = false});
+}

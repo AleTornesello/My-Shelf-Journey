@@ -3,10 +3,12 @@ import 'package:my_shelf_journey_mobile/src/features/books/books_list/data/repos
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/data/repositories/book_volume_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/data/repositories/category_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/data/repositories/google_api_repository.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/data/repositories/jikan_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/repositories/abstract_book_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/repositories/abstract_book_volume_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/repositories/abstract_category_repository.dart';
 import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/repositories/abstract_google_api_repository.dart';
+import 'package:my_shelf_journey_mobile/src/features/books/books_list/domain/repositories/abstract_jikan_repository.dart';
 
 Future<void> initReporitoriesInjections() async {
   sl.registerLazySingleton<AbstractBookRepository>(
@@ -20,5 +22,8 @@ Future<void> initReporitoriesInjections() async {
   );
   sl.registerLazySingleton<AbstractBookVolumeRepository>(
     () => BookVolumeRepository(sl()),
+  );
+  sl.registerLazySingleton<AbstractJikanRepository>(
+    () => JikanRepository(sl()),
   );
 }

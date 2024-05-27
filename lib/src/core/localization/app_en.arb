@@ -24,5 +24,9 @@
   "creatingBookVolumeKo": "An error occurred while creating the volume",
   "bookTitle": "Title",
   "bookImageUri": "Image URI",
-  "newBookViewTitle": "New book"
+  "newBookViewTitle": "New book",
+  "importFromMal": "Import from MyAnimeList",
+  "cancel": "Cancel",
+  "jikanSearchResultDialogTitle": "Search result",
+  "jikanVolumesChipLabel": "Volumes: {count}"
 }

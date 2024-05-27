@@ -14,12 +14,23 @@ class MsjThemeDataGenerator {
           backgroundColor: ColorConstants.primary,
           foregroundColor: ColorConstants.primaryText,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                StylesConstants.borderRadius,
-              ),
-              side: const BorderSide(
-                color: ColorConstants.primary,
-              )),
+            borderRadius: BorderRadius.circular(
+              StylesConstants.borderRadius,
+            ),
+            side: const BorderSide(
+              color: ColorConstants.primary,
+            ),
+          ),
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: ColorConstants.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              StylesConstants.borderRadius,
+            ),
+          ),
         ),
       ),
     );
