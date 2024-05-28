@@ -21,7 +21,7 @@ class BookVolumesListItem extends StatelessWidget {
           width: 50,
           decoration: BoxDecoration(
             color: volume.status == BookVolumeStatus.read
-                ? ColorConstants.primary
+                ? ColorConstants.primary500
                 : ColorConstants.gray400,
             borderRadius: BorderRadius.circular(StylesConstants.borderRadius),
           ),

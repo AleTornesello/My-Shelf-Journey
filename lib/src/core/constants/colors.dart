@@ -5,7 +5,16 @@ import 'package:flutter/material.dart';
 class ColorConstants {
   const ColorConstants._();
 
-  static const Color primary = Color(0xff0d214d);
+  static const Color primary50 = Color(0xffE2E4EA);
+  static const Color primary100 = Color(0xffB6BCCA);
+  static const Color primary200 = Color(0xff8690A6);
+  static const Color primary300 = Color(0xff566482);
+  static const Color primary400 = Color(0xff314268);
+  static const Color primary500 = Color(0xff0d214d);
+  static const Color primary600 = Color(0xff0B1D46);
+  static const Color primary700 = Color(0xff09183D);
+  static const Color primary800 = Color(0xff071434);
+  static const Color primary900 = Color(0xff030B25);
   static const Color primaryText = Color(0xffffffff);
 
   static const Color secondary = Color(0xff2e63b4);
@@ -78,8 +87,8 @@ class ColorConstants {
   static const Color gray900 = Color(0xff383838);
 
   static ColorScheme colorScheme = ColorScheme.fromSeed(
-    seedColor: primary,
-    primary: primary,
+    seedColor: primary500,
+    primary: primary500,
     onPrimary: primaryText,
     secondary: secondary,
     onSecondary: secondaryText,

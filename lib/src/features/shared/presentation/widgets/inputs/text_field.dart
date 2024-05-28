@@ -25,14 +25,14 @@ class MsjTextField extends StatelessWidget {
             : AppLocalizations.of(context)!.optionalField(label),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: ColorConstants.primary,
+            color: ColorConstants.primary500,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(StylesConstants.borderRadius),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: ColorConstants.primary,
+            color: ColorConstants.primary500,
             width: 1.0,
           ),
           borderRadius: BorderRadius.circular(StylesConstants.borderRadius),

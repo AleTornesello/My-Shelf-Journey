@@ -12,5 +12,7 @@ class StylesConstants {
 
   // Spacing
   static const double padding = 8.0;
+  static const double padding05 = padding / 2;
+  static const double padding025 = padding / 4;
   static const double padding2 = padding * 2;
 }
